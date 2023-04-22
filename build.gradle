@@ -1,0 +1,65 @@
+plugins {
+    id "java"
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+[compileJava, compileTestJava].each {
+    it.options.encoding = "UTF-8"
+    it.sourceCompatibility = JavaVersion.VERSION_1_8
+    it.targetCompatibility = JavaVersion.VERSION_1_8
+}
+javadoc.options.encoding = "UTF-8"
+
+group = project.maven_group
+archivesBaseName = project.maven_name
+version = project.maven_version
+
+configurations {
+    include
+
+    implementation.extendsFrom include
+    api.extendsFrom include
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        name = "Lenni0451"
+        url = "https://maven.lenni0451.net/releases"
+    }
+    maven {
+        name = "GeyserMC Main"
+        url = "https://repo.opencollab.dev/main/"
+    }
+}
+
+dependencies {
+    compileOnly "net.raphimc:ViaProxy:3.0.18"
+
+    include "org.geysermc.geyser:core:2.1.0-SNAPSHOT"
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("viaproxy.yml") {
+        expand "version": project.version
+    }
+}
+
+jar {
+    dependsOn configurations.include
+    from {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+        configurations.include.collect {
+            zipTree(it)
+        }
+    } {
+        exclude "META-INF/*.RSA", "META-INF/*.SF", "META-INF/*.DSA"
+    }
+
+    from("LICENSE") {
+        rename { "${it}_${project.archivesBaseName}" }
+    }
+}

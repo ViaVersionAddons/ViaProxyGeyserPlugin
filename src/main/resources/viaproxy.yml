@@ -1,0 +1,4 @@
+name: "GeyserPlugin"
+version: "${version}"
+author: "RK_01 and GeyserMC"
+main: "net.raphimc.geyserplugin.GeyserPlugin"
