@@ -32,6 +32,14 @@ repositories {
         name = "GeyserMC Main"
         url = "https://repo.opencollab.dev/main/"
     }
+    maven {
+        name = "OpenCollab Releases"
+        url = "https://repo.opencollab.dev/maven-releases/"
+    }
+    maven {
+        name = "OpenCollab Snapshots"
+        url = "https://repo.opencollab.dev/maven-snapshots/"
+    }
 }
 
 dependencies {
