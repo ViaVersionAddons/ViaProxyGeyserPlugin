@@ -17,14 +17,10 @@
  */
 package net.raphimc.geyserplugin;
 
-import net.lenni0451.classtransform.TransformerManager;
-import net.lenni0451.classtransform.utils.tree.IClassProvider;
 import net.lenni0451.lambdaevents.EventHandler;
 import net.raphimc.geyserplugin.impl.VPGeyserBootstrap;
 import net.raphimc.viaproxy.cli.options.Options;
-import net.raphimc.viaproxy.injection.Java17ToJava8;
 import net.raphimc.viaproxy.plugins.PluginManager;
-import net.raphimc.viaproxy.plugins.ViaProxyPlugin;
 import net.raphimc.viaproxy.plugins.events.ConsoleCommandEvent;
 import net.raphimc.viaproxy.plugins.events.ProxyStartEvent;
 import net.raphimc.viaproxy.plugins.events.ProxyStopEvent;
@@ -36,19 +32,13 @@ import org.geysermc.geyser.text.GeyserLocale;
 
 import java.io.File;
 
-public class GeyserPlugin extends ViaProxyPlugin {
+public class GeyserPlugin {
 
     public static final Logger LOGGER = LogManager.getLogger("Geyser");
     public static final File ROOT_FOLDER = new File(PluginManager.PLUGINS_DIR, "Geyser");
 
     private VPGeyserBootstrap bootstrap;
 
-    @Override
-    public void registerTransformers(TransformerManager transformerManager, IClassProvider classProvider) {
-        transformerManager.addBytecodeTransformer(new Java17ToJava8(classProvider).addWhitelistedPackage("org.geysermc"));
-    }
-
-    @Override
     public void onEnable() {
         ROOT_FOLDER.mkdirs();
 
