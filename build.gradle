@@ -33,12 +33,16 @@ repositories {
         url = "https://repo.opencollab.dev/main/"
     }
     maven {
-        name = "OpenCollab Releases"
-        url = "https://repo.opencollab.dev/maven-releases/"
+        name = "Jitpack"
+        url = "https://jitpack.io"
     }
     maven {
-        name = "OpenCollab Snapshots"
-        url = "https://repo.opencollab.dev/maven-snapshots/"
+        name = "Sonatype Snapshots"
+        url "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+    maven {
+        name = "Sonatype Snapshots 2"
+        url = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
     }
 }
 
