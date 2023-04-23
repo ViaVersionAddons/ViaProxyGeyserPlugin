@@ -18,7 +18,6 @@
 package net.raphimc.geyserplugin;
 
 import net.lenni0451.classtransform.TransformerManager;
-import net.lenni0451.classtransform.utils.tree.IClassProvider;
 import net.raphimc.viaproxy.injection.Java17ToJava8;
 import net.raphimc.viaproxy.plugins.ViaProxyPlugin;
 
@@ -30,8 +29,8 @@ public class Bootstrap extends ViaProxyPlugin {
     }
 
     @Override
-    public void registerTransformers(TransformerManager transformerManager, IClassProvider classProvider) {
-        transformerManager.addBytecodeTransformer(new Java17ToJava8(classProvider).addWhitelistedPackage("org.geysermc"));
+    public void registerTransformers(TransformerManager transformerManager) {
+        transformerManager.addBytecodeTransformer(new Java17ToJava8(transformerManager).addWhitelistedPackage("org.geysermc"));
     }
 
 }
