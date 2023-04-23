@@ -13,6 +13,6 @@ The remote address and port will be configured automatically by ViaProxy.
 
 ## Contact
 If you encounter any issues, please report them on the
-[issue tracker](https://github.com/RaphiMC/ViaProxy/issues).  
+[issue tracker](https://github.com/RaphiMC/ViaProxyGeyserPlugin/issues).  
 If you just want to talk or need help using ViaProxyGeyserPlugin feel free to join my
 [Discord](https://discord.gg/dCzT9XHEWu).
