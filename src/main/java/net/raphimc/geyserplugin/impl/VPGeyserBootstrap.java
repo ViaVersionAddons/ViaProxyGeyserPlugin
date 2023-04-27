@@ -30,6 +30,7 @@ import org.geysermc.geyser.ping.IGeyserPingPassthrough;
 import org.geysermc.geyser.text.GeyserLocale;
 import org.geysermc.geyser.util.FileUtils;
 import org.geysermc.geyser.util.LoopbackUtil;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -111,6 +112,22 @@ public class VPGeyserBootstrap implements GeyserBootstrap {
     @Override
     public BootstrapDumpInfo getDumpInfo() {
         return new VPGeyserDumpInfo();
+    }
+
+    @NotNull
+    @Override
+    public String getServerBindAddress() {
+        return "";
+    }
+
+    @Override
+    public int getServerPort() {
+        return -1;
+    }
+
+    @Override
+    public boolean testFloodgatePluginPresent() {
+        return false;
     }
 
 }
