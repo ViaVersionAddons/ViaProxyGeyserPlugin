@@ -30,7 +30,7 @@ public class Bootstrap extends ViaProxyPlugin {
 
     @Override
     public void registerTransformers(TransformerManager transformerManager) {
-        transformerManager.addBytecodeTransformer(new Java17ToJava8(transformerManager).addWhitelistedPackage("org.geysermc"));
+        transformerManager.addBytecodeTransformer(new Java17ToJava8(transformerManager).addWhitelistedPackage(""));
     }
 
 }
