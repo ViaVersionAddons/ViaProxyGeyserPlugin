@@ -65,7 +65,7 @@ public class GeyserPlugin {
             config.setAutoconfiguredRemote(true);
             config.getRemote().setAddress("127.0.0.1");
             config.getRemote().setPort(Options.BIND_PORT);
-            config.getRemote().setAuthType(AuthType.OFFLINE);
+            config.getRemote().setAuthType(Options.ONLINE_MODE ? AuthType.ONLINE : AuthType.OFFLINE);
         });
     }
 
