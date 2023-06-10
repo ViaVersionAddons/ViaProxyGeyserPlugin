@@ -18,10 +18,12 @@
 package net.raphimc.geyserplugin.impl;
 
 import net.raphimc.geyserplugin.GeyserPlugin;
+import net.raphimc.viaproxy.cli.options.Options;
 import org.geysermc.common.PlatformType;
 import org.geysermc.geyser.GeyserBootstrap;
 import org.geysermc.geyser.GeyserImpl;
 import org.geysermc.geyser.GeyserLogger;
+import org.geysermc.geyser.api.network.AuthType;
 import org.geysermc.geyser.command.GeyserCommandManager;
 import org.geysermc.geyser.configuration.GeyserConfiguration;
 import org.geysermc.geyser.dump.BootstrapDumpInfo;
@@ -36,11 +38,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.UUID;
-import java.util.function.Consumer;
 
 public class VPGeyserBootstrap implements GeyserBootstrap {
 
-    private VPGeyserLogger logger;
+    private final VPGeyserLogger logger = new VPGeyserLogger();
     private VPGeyserConfiguration config;
 
     private GeyserImpl geyser;
@@ -49,11 +50,6 @@ public class VPGeyserBootstrap implements GeyserBootstrap {
 
     @Override
     public void onEnable() {
-        this.onEnable(null);
-    }
-
-    public void onEnable(final Consumer<VPGeyserConfiguration> configModifier) {
-        this.logger = new VPGeyserLogger();
         LoopbackUtil.checkAndApplyLoopback(this.logger);
 
         try {
@@ -64,12 +60,10 @@ public class VPGeyserBootstrap implements GeyserBootstrap {
             System.exit(1);
         }
 
-        if (configModifier != null) {
-            configModifier.accept(this.config);
-        }
+        config.getRemote().setAuthType(Options.ONLINE_MODE ? AuthType.ONLINE : AuthType.OFFLINE);
         GeyserConfiguration.checkGeyserConfiguration(this.config, this.logger);
 
-        this.geyser = GeyserImpl.load(PlatformType.STANDALONE, this);
+        this.geyser = GeyserImpl.load(PlatformType.BUNGEECORD/*Has to be a proxy to use the auto remote configuring feature of Geyser*/, this);
         GeyserImpl.start();
 
         this.commandManager = new GeyserCommandManager(this.geyser);
@@ -117,12 +111,12 @@ public class VPGeyserBootstrap implements GeyserBootstrap {
     @NotNull
     @Override
     public String getServerBindAddress() {
-        return "";
+        return Options.BIND_ADDRESS;
     }
 
     @Override
     public int getServerPort() {
-        return -1;
+        return Options.BIND_PORT;
     }
 
     @Override

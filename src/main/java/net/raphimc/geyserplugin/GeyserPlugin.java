@@ -19,7 +19,6 @@ package net.raphimc.geyserplugin;
 
 import net.lenni0451.lambdaevents.EventHandler;
 import net.raphimc.geyserplugin.impl.VPGeyserBootstrap;
-import net.raphimc.viaproxy.cli.options.Options;
 import net.raphimc.viaproxy.plugins.PluginManager;
 import net.raphimc.viaproxy.plugins.events.ConsoleCommandEvent;
 import net.raphimc.viaproxy.plugins.events.ProxyStartEvent;
@@ -27,7 +26,6 @@ import net.raphimc.viaproxy.plugins.events.ProxyStopEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.geysermc.geyser.GeyserImpl;
-import org.geysermc.geyser.api.network.AuthType;
 import org.geysermc.geyser.text.GeyserLocale;
 
 import java.io.File;
@@ -59,14 +57,12 @@ public class GeyserPlugin {
         }
     }
 
+    // Code below split apart from GeyserImpl.getInstance().reload();
+
     @EventHandler
     public void onProxyStart(final ProxyStartEvent event) {
-        this.bootstrap.onEnable(config -> {
-            config.setAutoconfiguredRemote(true);
-            config.getRemote().setAddress("127.0.0.1");
-            config.getRemote().setPort(Options.BIND_PORT);
-            config.getRemote().setAuthType(Options.ONLINE_MODE ? AuthType.ONLINE : AuthType.OFFLINE);
-        });
+        GeyserImpl.getInstance().extensionManager().enableExtensions();
+        this.bootstrap.onEnable();
     }
 
     @EventHandler
