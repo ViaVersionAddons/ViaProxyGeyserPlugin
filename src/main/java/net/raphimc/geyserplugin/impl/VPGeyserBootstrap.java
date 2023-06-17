@@ -19,11 +19,11 @@ package net.raphimc.geyserplugin.impl;
 
 import net.raphimc.geyserplugin.GeyserPlugin;
 import net.raphimc.viaproxy.cli.options.Options;
-import org.geysermc.common.PlatformType;
 import org.geysermc.geyser.GeyserBootstrap;
 import org.geysermc.geyser.GeyserImpl;
 import org.geysermc.geyser.GeyserLogger;
 import org.geysermc.geyser.api.network.AuthType;
+import org.geysermc.geyser.api.util.PlatformType;
 import org.geysermc.geyser.command.GeyserCommandManager;
 import org.geysermc.geyser.configuration.GeyserConfiguration;
 import org.geysermc.geyser.dump.BootstrapDumpInfo;
