@@ -27,16 +27,20 @@ repositories {
     mavenLocal()
     mavenCentral()
     maven {
-        name = "Lenni0451"
+        name = "Lenni0451 Releases"
         url = "https://maven.lenni0451.net/releases"
     }
     maven {
-        name = "GeyserMC Main"
-        url = "https://repo.opencollab.dev/main/"
+        name = "ViaVersion"
+        url "https://repo.viaversion.com"
     }
     maven {
         name = "Jitpack"
         url = "https://jitpack.io"
+    }
+    maven {
+        name = "GeyserMC Main"
+        url = "https://repo.opencollab.dev/main/"
     }
     maven {
         name = "Sonatype Snapshots"
@@ -49,7 +53,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly "net.raphimc:ViaProxy:3.0.18"
+    implementation "net.raphimc:ViaProxy:3.0.20"
 
     include "org.geysermc.geyser:core:latest.integration"
 }
@@ -71,6 +75,14 @@ jar {
         }
     } {
         exclude "META-INF/*.RSA", "META-INF/*.SF", "META-INF/*.DSA"
+
+        // Remove libraries already included in ViaProxy to prevent class loading issues
+        // Should be excluded in the dependencies block, but that doesn't work for some reason
+        exclude "io/netty/"
+        exclude "org/slf4j/"
+        exclude "org/objectweb/asm/"
+        exclude "com/google/common/"
+        exclude "com/google/gson/"
     }
 
     from("LICENSE") {
