@@ -4,12 +4,7 @@ plugins {
 
 base {
     java.toolchain.languageVersion = JavaLanguageVersion.of(17)
-    [compileJava, compileTestJava].each {
-        it.options.encoding = "UTF-8"
-        it.sourceCompatibility = JavaVersion.VERSION_1_8
-        it.targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    javadoc.options.encoding = "UTF-8"
+    compileJava.options.encoding = compileTestJava.options.encoding = javadoc.options.encoding = "UTF-8"
 
     group = project.maven_group ?: rootProject.maven_group
     archivesName = project.maven_name ?: rootProject.maven_name
@@ -27,8 +22,8 @@ repositories {
     mavenLocal()
     mavenCentral()
     maven {
-        name = "Lenni0451 Releases"
-        url = "https://maven.lenni0451.net/releases"
+        name = "Lenni0451"
+        url = "https://maven.lenni0451.net/everything"
     }
     maven {
         name = "ViaVersion"
@@ -53,7 +48,7 @@ repositories {
 }
 
 dependencies {
-    implementation "net.raphimc:ViaProxy:3.0.20"
+    implementation "net.raphimc:ViaProxy:3.0.21"
 
     include "org.geysermc.geyser:core:latest.integration"
 }
