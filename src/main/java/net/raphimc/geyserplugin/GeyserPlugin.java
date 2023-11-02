@@ -19,6 +19,7 @@ package net.raphimc.geyserplugin;
 
 import net.lenni0451.lambdaevents.EventHandler;
 import net.raphimc.geyserplugin.impl.VPGeyserBootstrap;
+import net.raphimc.viaproxy.ViaProxy;
 import net.raphimc.viaproxy.plugins.PluginManager;
 import net.raphimc.viaproxy.plugins.events.ConsoleCommandEvent;
 import net.raphimc.viaproxy.plugins.events.ProxyStartEvent;
@@ -45,7 +46,7 @@ public class GeyserPlugin {
         this.bootstrap.onEnable();
         GeyserImpl.getInstance().shutdown();
 
-        PluginManager.EVENT_MANAGER.register(this);
+        ViaProxy.EVENT_MANAGER.register(this);
     }
 
     @EventHandler

@@ -48,7 +48,7 @@ repositories {
 }
 
 dependencies {
-    implementation "net.raphimc:ViaProxy:3.0.21"
+    implementation "net.raphimc:ViaProxy:3.0.22"
 
     include "org.geysermc.geyser:core:latest.integration"
 }
