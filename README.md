@@ -1,7 +1,5 @@
-## Geyser will soon natively support ViaProxy.
-~~You can now simply download the latest Geyser from their website and put it into the ViaProxy plugins folder.~~ (Waiting for https://github.com/GeyserMC/Geyser/pull/4201)
-
-In the meantime download the build here: https://github.com/GeyserMC/Geyser/actions/runs/6997634227
+## Geyser now supports ViaProxy natively.
+You can simply download the latest Geyser from their [website](https://geysermc.org/download) and put it into the ViaProxy plugins folder.
 
 ---
 
